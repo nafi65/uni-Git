@@ -1,18 +1,22 @@
-        private void button2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox4.Text == "")
-                MessageBox.Show("????? ??? ?? ???? ????");
-            else
+            try
             {
-                OleDbConnection conect = new OleDbConnection();
-                conect.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;" + @"data source=|DataDirectory|\Dal\university.mdb;";
-                conect.Open();
-                OleDbCommand o1 = new OleDbCommand();
-                o1.Connection = conect;
-                o1.CommandText = " delete from dorosearayeshode where code='" + textBox4.Text + "'";
-                o1.ExecuteNonQuery();
-                conect.Close();
-                MessageBox.Show("??? ??? ??");
-                this.dorosearayeshodeTableAdapter1.Fill(this.universityDataSet16.dorosearayeshode);
+                OleDbConnection con1 = new OleDbConnection();
+                con1.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;" + @"data source=|DataDirectory|\Dal\university.mdb" + "data source=university.mdb;";
+                con1.Open();
+                OleDbCommand c1 = new OleDbCommand();
+                c1.CommandText = "update doneshjo set name='" + textBox1.Text + "'" + ",family='" + textBox2.Text + "'" + ",father='" + textBox3.Text + "'" + ",shomareshenasname='" + textBox4.Text + "'" + ",shomaredoneshjo='" + textBox5.Text + "'" + ",tarikhtavallod='" + textBox6.Text + "'" + ",salevorod='" + textBox9.Text + "'" + ",reshte='" + textBox10.Text + "'" + ",tell='" + textBox11.Text + "'" + ",address='" + textBox12.Text + "' where shomaredoneshjo='" + textBox13.Text + "'";
+                c1.Connection = con1;
+                c1.ExecuteNonQuery();
+                MessageBox.Show("?????? ?????? ??");
+                con1.Close();
+                this.doneshjoTableAdapter.Fill(this.universityDataSet1.doneshjo);
+           
+             }
+            catch (Exception)
+            {
+                MessageBox.Show("????? ???????? ?????? ???");
             }
+
         }
