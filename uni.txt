@@ -1,0 +1,18 @@
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (textBox4.Text == "")
+                MessageBox.Show("????? ??? ?? ???? ????");
+            else
+            {
+                OleDbConnection conect = new OleDbConnection();
+                conect.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;" + @"data source=|DataDirectory|\Dal\university.mdb;";
+                conect.Open();
+                OleDbCommand o1 = new OleDbCommand();
+                o1.Connection = conect;
+                o1.CommandText = " delete from dorosearayeshode where code='" + textBox4.Text + "'";
+                o1.ExecuteNonQuery();
+                conect.Close();
+                MessageBox.Show("??? ??? ??");
+                this.dorosearayeshodeTableAdapter1.Fill(this.universityDataSet16.dorosearayeshode);
+            }
+        }
